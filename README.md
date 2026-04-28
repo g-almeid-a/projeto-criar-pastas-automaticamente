@@ -1,20 +1,20 @@
 # 💾 Backup Tool
 
-Ferramenta simples e automatizada para criação de estrutura de pastas de backup padrão.
+Ferramenta automatizada para criação de estrutura de pastas de backup de forma rápida, padronizada e sem erros manuais.
 
 ---
 
 ## 📌 Sobre o projeto
 
-O **Backup Tool** é um programa desenvolvido em Python que cria automaticamente uma estrutura de diretórios para organização de backups, evitando erros manuais e padronizando o processo.
+O **Backup Tool** é um programa desenvolvido em Python que cria automaticamente uma estrutura de diretórios para organização de backups.
 
-Ideal para uso interno em empresas ou uso pessoal.
+O objetivo é facilitar o processo de padronização de backups, podendo ser utilizado tanto em ambientes pessoais quanto corporativos.
 
 ---
 
 ## 🧱 Estrutura criada
 
-Ao executar o programa, será criada a seguinte estrutura:
+Ao executar o programa, será criada automaticamente a seguinte estrutura:
 
 ```
 backup/
@@ -37,7 +37,8 @@ O sistema:
 
 * Detecta automaticamente o local onde está sendo executado
 * Cria a pasta `backup` no mesmo diretório
-* Gera subpastas com base em um arquivo de configuração (`config.json`)
+* Gera subpastas com base no arquivo `config.json`
+* Evita recriar pastas já existentes
 
 ---
 
@@ -50,27 +51,29 @@ Backup_tool/
 ├── estrutura.py     # Lógica de criação das pastas
 ├── utils.py         # Funções auxiliares
 ├── config.json      # Configuração da estrutura
+├── build.bat        # Script para gerar o executável automaticamente
+├── icone.ico        # Ícone personalizado do executável
 └── dist/
     └── main.exe     # Executável gerado
 ```
 
 ---
 
-## ▶️ Como executar o programa
+## ▶️ Como executar
 
-### 🔹 Opção 1 — Executável (.exe)
+### 🔹 Executável (.exe)
 
-1. Vá até a pasta onde está o arquivo `main.exe`
+1. Vá até a pasta onde está o `main.exe`
 2. Certifique-se de que o arquivo `config.json` está na mesma pasta
-3. Dê duplo clique no `main.exe`
+3. Execute o `main.exe`
 
 ✔️ A pasta `backup` será criada automaticamente
 
 ---
 
-### 🔹 Opção 2 — Rodar pelo terminal
+### 🔹 Rodar pelo Python
 
-Abra o terminal na pasta do projeto e execute:
+No terminal:
 
 ```
 python main.py
@@ -78,25 +81,28 @@ python main.py
 
 ---
 
-## ⚠️ Observações importantes
+## ⚙️ Automação de build (build.bat)
 
-* O arquivo `config.json` deve estar sempre na mesma pasta do executável
-* O programa cria as pastas no mesmo local onde está sendo executado
-* Caso a pasta já exista, ela não será sobrescrita
+O projeto possui um arquivo `build.bat` que automatiza a geração do executável.
+
+Ao executá-lo, o sistema:
+
+* 🧹 Remove builds antigos (`build/`, `dist/`, `.spec`)
+* 🔄 Gera um novo executável atualizado
+* 🎨 Aplica automaticamente o ícone personalizado
+
+### ▶️ Como usar
+
+1. Abra o projeto no VS Code
+2. Execute o arquivo `build.bat`
+
+✔️ Isso garante um `.exe` sempre limpo e atualizado
 
 ---
 
-## 🧪 Tecnologias utilizadas
+## 🚀 Gerar executável manualmente
 
-* Python 3
-* pathlib
-* PyInstaller (para gerar o executável)
-
----
-
-## 🚀 Gerar o executável
-
-Para gerar o `.exe`, utilize:
+Caso queira gerar manualmente:
 
 ```
 pyinstaller --onefile --clean --icon=icone.ico --add-data "config.json;." main.py
@@ -104,12 +110,28 @@ pyinstaller --onefile --clean --icon=icone.ico --add-data "config.json;." main.p
 
 ---
 
+## ⚠️ Observações importantes
+
+* O arquivo `config.json` deve estar na mesma pasta do executável
+* O programa cria as pastas no local onde está sendo executado
+* O executável pode ser movido para qualquer diretório
+
+---
+
+## 🧪 Tecnologias utilizadas
+
+* Python 3
+* pathlib
+* PyInstaller
+
+---
+
 ## 📈 Possíveis melhorias
 
 * Interface gráfica (GUI)
-* Seleção de diretório de destino
+* Escolha do diretório de destino
 * Sistema de logs
-* Versionamento automático de backups
+* Versionamento de backups
 * Instalador completo (setup.exe)
 
 ---
